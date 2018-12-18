@@ -1,0 +1,28 @@
+<div>
+    <material-input label="Where is the weather interesting for you?"
+                    autoFocus floatingLabel style="width:80%"
+                    [(ngModel)]="checkNewCity"
+                    (keyup.enter)="downloadJson()">
+    </material-input>
+
+    <material-fab mini raised
+                  (trigger)="downloadJson()"
+                  [disabled]="checkNewCity.isEmpty">
+        <material-icon icon="add"></material-icon>
+    </material-fab>
+</div>
+
+<p *ngIf="checkNewCity.isEmpty">
+    Enter name of City and Press The Button.
+</p>
+
+<ul *ngIf="!checkNewCity.isEmpty">
+    <li *ngFor="let temperature of temperatures;let i=index"> <acx-scorecard
+            label="{{dates[i]}}"
+            class="city"
+            value="{{temperature}}°C"
+    >
+    </acx-scorecard></li>
+</ul>
+
+
